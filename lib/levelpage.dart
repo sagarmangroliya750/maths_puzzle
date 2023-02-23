@@ -1,6 +1,7 @@
-// ignore_for_file: camel_case_types, non_constant_identifier_names, must_be_immutable, use_key_in_widget_constructors
+// ignore_for_file: camel_case_types, non_constant_identifier_names, must_be_immutable, use_key_in_widget_constructors, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:maths_puzzle/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class level extends StatefulWidget {
@@ -58,7 +59,7 @@ class _levelState extends State<level> {
               child: Text(
                 "Select Puzzle",
                 style: TextStyle(
-                  fontSize: 33,
+                  fontSize: 30,
                   fontStyle: FontStyle.italic,
                   color: Colors.indigo,
                 ),
@@ -104,22 +105,14 @@ class _levelState extends State<level> {
             Expanded(
               flex: 4,
               child: Container(
-                  // color: Colors.red,
-                  margin: EdgeInsets.only(left: 285,bottom: 15),
+                 margin: EdgeInsets.only(right:270,bottom: 15),
                   width: 100,
-                  height: 100,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                    //    color: Colors.indigo,
-                        width: 50,
-                        height: 50,
-                        margin: EdgeInsets.all(25),
-                        child: Icon(Icons.arrow_forward_rounded,size: 65,),
-                      )
-                    ],
-                  )),
+                  height: 90,
+                  child:IconButton(onPressed: () {
+                    Navigator.push(context,MaterialPageRoute(builder: (context) {
+                      return puzzle(curt_ind);
+                    },));
+                  }, icon: Icon(Icons.arrow_back,size:55,))),
             )
           ],
         ),

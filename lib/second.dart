@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, non_constant_identifier_names, prefer_const_constructors
+// ignore_for_file: camel_case_types, non_constant_identifier_names, prefer_const_constructors, prefer_is_empty
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,58 +16,12 @@ class _secondState extends State<second> {
   int curt_img = 1;
   String ans = "";
   List ans_ok = [
-    10,
-    20,
-    30,
-    40,
-    50,
-    60,
-    70,
-    80,
-    90,
-    100,
-    110,
-    120,
-    130,
-    140,
-    150,
-    160,
-    170,
-    180,
-    190,
-    200
+    10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140,150, 160, 170, 180, 190, 200
   ];
   List img = [
-    "p1.png",
-    "p2.png",
-    "p3.png",
-    "p4.png",
-    "p5.png",
-    "p6.png",
-    "p7.png",
-    "p8.png",
-    "p9.png",
-    "p10.png",
-    "p11.png",
-    "p12.png",
-    "p13.png",
-    "p14.png",
-    "p15.png",
-    "p16.png",
-    "p17.png",
-    "p18.png",
-    "p19.png",
-    "p20.png",
-    "p21.png",
-    "p22.png",
-    "p23.png",
-    "p24.png",
-    "p25.png",
-    "p26.png",
-    "p27.png",
-    "p28.png",
-    "p29.png",
-    "p30.png",
+    "p1.png", "p2.png", "p3.png", "p4.png", "p5.png", "p6.png", "p7.png", "p8.png", "p9.png", "p10.png",
+    "p11.png", "p12.png", "p13.png", "p14.png", "p15.png", "p16.png", "p17.png", "p18.png", "p19.png", "p20.png",
+    "p21.png", "p22.png", "p23.png", "p24.png", "p25.png", "p26.png", "p27.png", "p28.png", "p29.png", "p30.png",
   ];
   SharedPreferences? pref;
 
@@ -135,7 +89,7 @@ class _secondState extends State<second> {
                       )),
                       child: Text(
                         "puzzle ${curt_ind + 1}",
-                        style: TextStyle(fontSize: 37),
+                        style: TextStyle(fontSize: 30),
                       ),
                     ),
                     Container(
@@ -153,7 +107,7 @@ class _secondState extends State<second> {
                   ],
                 ),
                 Expanded(
-                  flex: 7,
+                  flex:11,
                   child: Container(
                     // color: Colors.blue,
                     height: double.infinity,
@@ -166,7 +120,9 @@ class _secondState extends State<second> {
                   ),
                 ),
                 Expanded(
+                  flex:2,
                   child: Container(
+
                       color: Colors.black,
                       height: double.infinity,
                       width: double.infinity,
@@ -244,10 +200,10 @@ class _secondState extends State<second> {
                                   setState(() {});
                                 },
                                 child: Container(
-                                  height: 40,
-                                  width: 90,
+                                  height: 30,
+                                  width: 80,
                                   alignment: Alignment.center,
-                                  margin: EdgeInsets.only(left: 20),
+                                  margin: EdgeInsets.only(left:10),
                                   decoration: tempp
                                       ? BoxDecoration(
                                           borderRadius:
