@@ -63,10 +63,7 @@ class _puzzleState extends State<puzzle> {
                   margin: EdgeInsets.only(top: 50),
                   alignment: Alignment.center,
                   child: Text(
-                    "Math Puzzles",
-                    style: TextStyle(
-                      fontSize: 30,
-                    ),
+                    "Math Puzzles",style: TextStyle(color:Colors.indigo,fontSize: 30,fontFamily:'font2',fontStyle: FontStyle.italic,),
                   ),
                 ),
               ),
@@ -171,6 +168,7 @@ class _puzzleState extends State<puzzle> {
                         onTapUp: (details) {
                           temp3 = false;
                           showDialog(
+                            barrierDismissible:false,
                             context: context,
                             builder: (context) {
                               return AlertDialog(
@@ -183,10 +181,10 @@ class _puzzleState extends State<puzzle> {
                                   ),
                                 ),
                                 content: const Text(
-                                  "1.No Ads\n"
-                                  "2.No wait time for hint and skip\n"
-                                  "3.Hint for every level\n"
-                                  "4.Solution for every level",
+                                  "1. No Ads\n"
+                                  "2. No wait time for hint and skip\n"
+                                  "3. Hint for every level\n"
+                                  "4. Solution for every level",
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -200,14 +198,13 @@ class _puzzleState extends State<puzzle> {
                                       },
                                       child: Container(
                                         // color: Colors.lightBlue,
-                                        width: 80,
-                                        height: 50,
-
+                                        width: 90,
+                                        height:40,
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
                                             border: Border.all(width: 1.5),
                                             borderRadius:
-                                                BorderRadius.circular(10),
+                                                BorderRadius.circular(7),
                                             gradient: LinearGradient(
                                               colors: [
                                                 Colors.blueGrey,
@@ -220,27 +217,21 @@ class _puzzleState extends State<puzzle> {
                                               begin: Alignment.bottomLeft,
                                               end: Alignment.topRight,
                                             )),
-                                        child: Text(
-                                          "BUY",
-                                          style: TextStyle(color: Colors.black),
-                                        ),
+                                        child: Text("BUY", style: TextStyle(color: Colors.black)),
                                       )),
                                   TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
                                       child: Container(
-                                        // color: Colors.lightBlue,
-                                        width: 80,
-                                        height: 50,
+                                        width: 90,
+                                        height: 40,
                                         margin: EdgeInsets.only(right: 40),
                                         alignment: Alignment.center,
-                                        child: Text(
-                                          "NO, THANKS",
-                                          style: TextStyle(color: Colors.black),
-                                        ),
+                                        child: Text( "NO, THANKS",style: TextStyle(color: Colors.black)),
                                         decoration: BoxDecoration(
                                             border: Border.all(width: 1.5),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
+                                            borderRadius: BorderRadius.circular(7),
                                             gradient: LinearGradient(
                                               colors: [
                                                 Colors.blueGrey,
@@ -271,8 +262,7 @@ class _puzzleState extends State<puzzle> {
                           margin: EdgeInsets.all(10),
                           decoration: temp3
                               ? BoxDecoration(
-                                  border: Border.all(
-                                      width: 1.5, color: Colors.white),
+                                  border: Border.all( width: 1.5, color: Colors.white),
                                   borderRadius: BorderRadius.circular(3))
                               : null,
                           child: Text(
@@ -387,7 +377,6 @@ class _puzzleState extends State<puzzle> {
       )),
     );
   }
-
   Future<bool> _onBackButtonPressed(BuildContext context) async {
     bool exitApp = await showDialog(
       context: context,
@@ -399,7 +388,7 @@ class _puzzleState extends State<puzzle> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(false);
+                Navigator.of(context).pop(true);
               },
               child: const Text(
                 "No",
@@ -408,7 +397,7 @@ class _puzzleState extends State<puzzle> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(true);
+                Navigator.of(context).pop(false);
               },
               child: const Text(
                 "Yes",
@@ -419,7 +408,6 @@ class _puzzleState extends State<puzzle> {
         );
       },
     );
-
-    return exitApp ?? false;
+    return exitApp ? false : true;
   }
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, camel_case_types, prefer_const_literals_to_create_immutables, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, camel_case_types, prefer_const_literals_to_create_immutables, sort_child_properties_last, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:maths_puzzle/second.dart';
@@ -30,25 +30,46 @@ class _thirdState extends State<third> {
         )),
         child: Column(
           children: [
+            Container(
+                margin: EdgeInsets.only(top: 40),
+                width: double.infinity,
+                height: 50,
+                alignment: Alignment.center,
+                //color: Colors.black,
+                child: Row(
+                  children: [
+                    SizedBox(width:15),
+                    Container(
+                      decoration:BoxDecoration(borderRadius:BorderRadius.circular(50),
+                          gradient:LinearGradient(colors:[
+                            Colors.blueGrey, Colors.white,
+                            Colors.blueGrey, Colors.blueGrey
+                          ])),
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return puzzle(0);
+                              },
+                            ));
+                          },
+                          icon: Icon(Icons.home,size:27,color:Colors.indigo,)),
+                    ),
+                    SizedBox(width:25),
+                    Text(
+                      "🎊 COMPLIETED 🎊",
+                      style: TextStyle(
+                          color: Colors.indigo,
+                          fontSize: 22,
+                          fontStyle: FontStyle.italic,
+                          fontFamily: 'font2'),
+                    ),
+                  ],
+                )),
             Expanded(
+                flex: 5,
                 child: Container(
-                  margin:EdgeInsets.only(top: 30),
-              width: double.infinity,
-              height: double.infinity,
-              alignment: Alignment.center,
-              //color: Colors.black,
-              child: Text(
-                "COMPLIETED",
-                style: TextStyle(
-                    color: Colors.indigo,
-                    fontSize: 22,
-                    fontStyle: FontStyle.italic),
-              ),
-            )),
-            Expanded(
-                flex:6,
-                child: Container(
-                  margin:EdgeInsets.only(top:60),
+                    margin: EdgeInsets.only(top: 60),
                     width: double.infinity,
                     height: double.infinity,
                     //     color: Colors.red,
@@ -58,14 +79,14 @@ class _thirdState extends State<third> {
             Expanded(
                 flex: 8,
                 child: Container(
-                  margin:EdgeInsets.only(bottom:100),
+                  margin: EdgeInsets.only(bottom: 100),
                   width: double.infinity,
                   height: double.infinity,
                   // color: Colors.blue,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height:10),
+                      SizedBox(height: 10),
                       InkWell(
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(
@@ -97,7 +118,7 @@ class _thirdState extends State<third> {
                           ),
                         ),
                       ),
-                      SizedBox(height:4),
+                      SizedBox(height: 4),
                       InkWell(
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(
@@ -124,18 +145,18 @@ class _thirdState extends State<third> {
                           child: Text(
                             "MAIN MENU",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 23,
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(height:10),
+                      SizedBox(height: 10),
                       Container(
                         //   color: Colors.yellow,
                         height: 40,
                         width: 150,
                         alignment: Alignment.center,
-                        margin: EdgeInsets.only(bottom:30),
+                        margin: EdgeInsets.only(bottom: 30),
                         child: Text(
                           "BUY PRO",
                           style: TextStyle(fontSize: 23),
@@ -150,17 +171,17 @@ class _thirdState extends State<third> {
                           ]),
                         ),
                       ),
-                      Container(
-                        child:Text("SHARE THIS PUZZLE",style:TextStyle(fontSize:18),),
-                      ),
+                      Text("SHARE THIS PUZZLE",
+                          style: TextStyle(fontSize: 18, fontFamily: 'font2')),
                       InkWell(
                         onTap: () {
-                          Share.share('https://play.google.com/store/apps/details?id=com.applabs.puzzle');
+                          Share.share(
+                              'https://play.google.com/store/apps/details?id=com.applabs.puzzle');
                         },
                         child: Container(
                           height: 40,
                           width: 40,
-                          margin: EdgeInsets.only(top:20),
+                          margin: EdgeInsets.only(top: 20),
                           child: Icon(
                             Icons.share,
                             size: 30,

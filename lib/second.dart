@@ -1,7 +1,7 @@
-// ignore_for_file: camel_case_types, non_constant_identifier_names, prefer_const_constructors, prefer_is_empty
-
+// ignore_for_file: camel_case_types, non_constant_identifier_names, prefer_const_constructors, prefer_is_empty, use_key_in_widget_constructors, sized_box_for_whitespace, unnecessary_brace_in_string_interps, unnecessary_string_interpolations
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:maths_puzzle/winnerpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,7 +11,7 @@ class second extends StatefulWidget {
 }
 
 class _secondState extends State<second> {
-  bool tempp = false;
+  bool temp = false;
   int curt_ind = 0;
   int curt_img = 1;
   String ans = "";
@@ -57,22 +57,34 @@ class _secondState extends State<second> {
                   children: [
                     InkWell(
                       onTap: () {
-                        // curt_ind++;
-                        // curt_img++;
-                        // pref!.setInt("puzzle", curt_ind);
-                        pref!.setString("levelstatus$curt_ind", "skip");
-                        curt_ind++;
-                        pref!.setInt("puzzle", curt_ind);
-                        ans = "";
-                        setState(() {});
+                        showDialog(
+                          barrierDismissible:false,
+                          context: context, builder: (context) {
+                          return AlertDialog(
+                            title:Text("Are you sure to skip this level ??",style:TextStyle(fontSize:15,fontFamily:'font2')),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                Navigator.pop(context);
+                              }, child:Text("Go Back",style:TextStyle(fontFamily:'font2'))),
+                              TextButton(onPressed: () {
+                                pref!.setString("levelstatus$curt_ind", "skip");
+                                curt_ind++;
+                                pref!.setInt("puzzle", curt_ind);
+                                ans = "";
+                                Navigator.pop(context);
+                                setState(() {});
+                              }, child:Text("Yes Skip",style:TextStyle(color:Colors.green,fontFamily:'font2')))
+                            ],
+                          );
+                        },);
                       },
                       child: Container(
-                        height: 48,
-                        width: 48,
+                        height: 48, width: 48,
                         margin: EdgeInsets.only(right: 25),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            image: DecorationImage(
+                              borderRadius: BorderRadius.circular(30),
+                              image: DecorationImage(
                               fit: BoxFit.fill,
                               image: AssetImage("images/skip3.png"),
                             )),
@@ -88,8 +100,8 @@ class _secondState extends State<second> {
                         image: AssetImage("images/level_board.png"),
                       )),
                       child: Text(
-                        "puzzle ${curt_ind + 1}",
-                        style: TextStyle(fontSize: 30),
+                        "Puzzle ${curt_ind + 1}",
+                        style: TextStyle(fontSize: 30,fontFamily: 'font1'),
                       ),
                     ),
                     Container(
@@ -107,11 +119,8 @@ class _secondState extends State<second> {
                   ],
                 ),
                 Expanded(
-                  flex:11,
+                  flex:14,
                   child: Container(
-                    // color: Colors.blue,
-                    height: double.infinity,
-                    width: double.infinity,
                     margin: EdgeInsets.all(15),
                     child: Image(
                       image: AssetImage("images/${img[curt_ind]}"),
@@ -120,28 +129,20 @@ class _secondState extends State<second> {
                   ),
                 ),
                 Expanded(
-                  flex:2,
+                  flex:3,
                   child: Container(
-
                       color: Colors.black,
-                      height: double.infinity,
-                      width: double.infinity,
                       child: Column(
                         children: [
                           Row(
                             children: [
                               Container(
-                                color: Colors.white,
-                                height: 25,
-                                width: 200,
+                                decoration:BoxDecoration( color: Colors.white,borderRadius:BorderRadius.circular(7)),
+                                height:35,width:200,
                                 margin: EdgeInsets.all(10),
                                 alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "$ans",
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                child: Text(" ${ans}",
+                                  style: TextStyle(fontSize:18,fontFamily:'font2'),
                                 ),
                               ),
                               InkWell(
@@ -151,74 +152,63 @@ class _secondState extends State<second> {
                                   }
                                   setState(() {});
                                 },
-                                child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  //  decoration: BoxDecoration(image: DecorationImage(image: AssetImage("images/delete.png"))),
-                                  child: Image(
-                                    image: AssetImage(
-                                        "images/delete-icon-on-iphone-1.png"),
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTapDown: (details) {
-                                  tempp = true;
-                                  setState(() {});
-                                },
-                                onTapUp: (details) {
-                                  tempp = false;
-
+                                onLongPress:() {
                                   setState(() {
-                                    if (ans_ok[curt_ind] == int.parse(ans)) {
-                                      curt_ind++;
-                                      ans = "";
-                                      pref!.setInt("puzzle", curt_ind);
-                                      Navigator.push(context, MaterialPageRoute(
-                                        builder: (context) {
-                                          return third();
-                                        },
-                                      ));
-                                      setState(() {});
-                                    } else {
-                                      ans = "";
-                                      Fluttertoast.showToast(
-                                        msg: "Wrong asnwer",
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.CENTER,
-                                        timeInSecForIosWeb: 1,
-                                        backgroundColor: Colors.black,
-                                        textColor: Colors.white,
-                                        fontSize: 16.0,
-                                      );
-                                    }
+                                    ans = "";
                                   });
                                 },
-                                onTapCancel: () {
-                                  tempp = false;
-                                  setState(() {});
-                                },
                                 child: Container(
-                                  height: 30,
-                                  width: 80,
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.only(left:10),
-                                  decoration: tempp
-                                      ? BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                          border: Border.all(
-                                              width: 1, color: Colors.white),
-                                        )
-                                      : null,
-                                  child: Text(
-                                    "SUMBIT",
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        fontStyle: FontStyle.italic,
-                                        color: Colors.white),
-                                  ),
+                                  margin:EdgeInsets.only(right:10),
+                                  height: 40,width: 40,
+                                   decoration: BoxDecoration(image: DecorationImage(image: AssetImage("images/delete.png"))),
+                                ),
+                              ),
+                              // InkWell(
+                              //   onTapDown: (details) {
+                              //     temp = true;
+                              //     setState(() {});
+                              //   },
+                              //   onTapUp: (details) {
+                              //
+                              //   },
+                              //   onTapCancel: () {
+                              //     temp = false;
+                              //     setState(() {});
+                              //   },
+                              // ),
+                              SizedBox(
+                                width:90,
+                                child: GFButton(
+                                  onPressed: (){
+                                    temp = false;
+                                    setState(() {
+                                      if (ans_ok[curt_ind] == int.parse(ans))
+                                      {
+                                        curt_ind++;
+                                        ans = "";
+                                        pref!.setInt("puzzle", curt_ind);
+                                        Navigator.push(context, MaterialPageRoute( builder: (context) {
+                                            return third();
+                                          },
+                                        ));
+                                        setState(() {});
+                                      } else {
+                                        ans = "";
+                                        Fluttertoast.showToast(
+                                          msg: "Wrong Answer !!",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.CENTER,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.black,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0,
+                                        );
+                                      }
+                                    });
+                                  },
+                                  text: "SUBMIT",textStyle:TextStyle(fontSize:15,color:ans.isNotEmpty ? Colors.green : Colors.white),
+                                  size: 35,
+                                  type:GFButtonType.outline,color:ans.isNotEmpty ? Colors.green : Colors.white,
                                 ),
                               ),
                             ],
@@ -463,9 +453,7 @@ class _secondState extends State<second> {
               onPressed: () {
                 Navigator.of(context).pop(true);
               },
-              child: const Text(
-                "Yes",
-                style: TextStyle(color: Colors.red),
+              child: const Text("Yes", style: TextStyle(color: Colors.red),
               ),
             ),
           ],
