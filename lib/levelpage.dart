@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:maths_puzzle/main.dart';
+import 'package:maths_puzzle/second.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class level extends StatefulWidget {
@@ -80,24 +81,30 @@ class _levelState extends State<level> {
                     ),
 
                     itemBuilder: (context, index) {
-                      return Container(
-                      //  color: Colors.indigo,
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.all(10),
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          image: (index < curt_ind) ? (list[index] == "win") ?
-                            DecorationImage(image: AssetImage("images/tick.png")) : null
-                            : DecorationImage(image: AssetImage("images/lock.png")),
-                          border:  (index < curt_ind) ? Border.all(width: 1.5) : null,
-                          borderRadius: BorderRadius.circular(10)
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(context,MaterialPageRoute(builder: (context) {
+                            return second();
+                          },));
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            image: (index < curt_ind) ? (list[index] == "win") ?
+                              DecorationImage(image: AssetImage("images/tick.png")) : null
+                              : DecorationImage(image: AssetImage("images/lock.png")),
+                            border:  (index < curt_ind) ? Border.all(width: 1.5) : null,
+                            borderRadius: BorderRadius.circular(10)
+                          ),
+                          child: (index < curt_ind) ?
+                          Text("${index+1}",
+                          style: TextStyle(
+                            fontFamily: "font1",
+                            fontSize: 40,
+                          ),) : null,
                         ),
-                        child: (index < curt_ind) ?
-                        Text("${index+1}",
-                        style: TextStyle(
-                          fontFamily: "font1",
-                          fontSize: 40,
-                        ),) : null,
                       );
                     },
                   ),

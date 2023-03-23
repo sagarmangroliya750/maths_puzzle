@@ -354,20 +354,6 @@ class _puzzleState extends State<puzzle> {
                               ),
                             ],
                           ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.end,
-                          //   children: [
-                          //     Container(
-                          //         height: 25,
-                          //         width: 90,
-                          //         alignment: Alignment.center,
-                          //         decoration: BoxDecoration(
-                          //           border: Border.all(width: 1.5),
-                          //         ),
-                          //         margin: EdgeInsets.only(right:20,bottom:10),
-                          //         child: Text("Privacy Policy")),
-                          //     ],
-                          // )
                         ],
                       )
                     )),

@@ -163,19 +163,6 @@ class _secondState extends State<second> {
                                    decoration: BoxDecoration(image: DecorationImage(image: AssetImage("images/delete.png"))),
                                 ),
                               ),
-                              // InkWell(
-                              //   onTapDown: (details) {
-                              //     temp = true;
-                              //     setState(() {});
-                              //   },
-                              //   onTapUp: (details) {
-                              //
-                              //   },
-                              //   onTapCancel: () {
-                              //     temp = false;
-                              //     setState(() {});
-                              //   },
-                              // ),
                               SizedBox(
                                 width:90,
                                 child: GFButton(
